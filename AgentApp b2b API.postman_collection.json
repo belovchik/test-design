@@ -1,0 +1,694 @@
+{
+	"info": {
+		"_postman_id": "1ef6288e-25c1-4a57-be57-497973450e05",
+		"name": "AgentApp b2b API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17682538"
+	},
+	"item": [
+		{
+			"name": "Получение токена",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"qa@qa.qa\",\r\n  \"password\": \"111\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/users/obtain-token",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"users",
+						"obtain-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Текущий пользователь",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token a3f1f7e29076fc6ecc4f3b49c7ee8e71c605a37c",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/users/current_user",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"users",
+						"current_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение общих настроек приложения",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/general_preferences",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"general_preferences"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Водитель",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"first_name\": \"Илья\",\r\n   \"last_name\": \"Белов\",\r\n   \"patronymic\": \"Евгеньевич\",\r\n   \"birth_date\": \"1996-02-27\",\r\n   \"gender\":\"M\",\r\n   \"driving_experience_started\": \"2014-02-28\",\r\n   \"driver_licenses\": [{\r\n   \t\t\"credential_type\": \"DRIVER_LICENSE\",\r\n\t\t\"number\": \"000001\",\r\n\t\t\"series\": \"2627\",\r\n\t\t\"issue_date\": \"2014-02-28\"\r\n\t}]\r\n}"
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/insured_objects/drivers",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"insured_objects",
+						"drivers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Водитель",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/insured_objects/drivers/{{driver_id}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"insured_objects",
+						"drivers",
+						"{{driver_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Собственник ФЛ",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"last_name\": \"Белов\",\r\n\t\"first_name\": \"Илья\",\r\n\t\"patronymic\": \"Евгеньевич\",\r\n\t\"birth_date\": \"1996-02-27\",\r\n\t\"gender\": \"M\",\r\n\t\"credential\": [{\r\n\t  \t\"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n\t\t\"issue_date\": \"2016-03-08\",\r\n\t\t\"issue_point\": \"УФМС\",\r\n\t\t\"issue_point_code\": \"123-456\",\r\n\t\t\"number\": \"123123\",\r\n\t\t\"series\": \"1111\"\r\n\t}],\r\n\t\"address\": [{\r\n\t\t\"address_query\": \"г Дрезна, ул Северная, д 6а к 85\",\r\n\t\t\"address_type\": \"LEGAL_ADDRESS\"\r\n\t},\r\n\t{\r\n\t\t\"address_query\": \"г Дрезна, ул Северная, д 6а к 85\",\r\n\t\t\"address_type\": \"ACTUAL_ADDRESS\"\r\n\t}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/insured_objects/owners/natural_persons\n",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"insured_objects",
+						"owners",
+						"natural_persons\n"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Расчёт договора",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"valid_from\": \"2022-01-20\",\r\n\t\"valid_to\": \"2023-01-19\",\r\n\t\"engine_power\": 295,\r\n\t\"is_car_without_registration\": false,\r\n\t\"car_type\": \"B\",\r\n\t\"target_of_using\": 11,\r\n\t\"has_car_trailer\": false,\r\n\t\"insurance_period\": 8,\r\n\t\"owner_registration\": {\r\n\t\t\"address_query\": \"г Дрезна\",\r\n\t\t\"region_kladr_id\": \"5000000000000\"\r\n\r\n\t},\r\n\t\"periods\": [{\r\n            \"start_date\": \"2022-01-20\",\r\n            \"end_date\": \"2022-04-19\"\r\n        }],\r\n\t\"drivers_ids\":[\"{{driver_id}}\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/calculations",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"calculations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Страхователь",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"last_name\": \"Белов\",\r\n\t\"first_name\": \"Илья\",\r\n\t\"patronymic\": \"Евгеньевич\",\r\n\t\"birth_date\": \"1996-02-27\",\r\n\t\"gender\": \"M\",\r\n\t\"credential\": [{\r\n\t  \t\"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n\t\t\"issue_date\": \"2016-03-08\",\r\n\t\t\"issue_point\": \"УФМС\",\r\n\t\t\"issue_point_code\": \"123-456\",\r\n\t\t\"number\": \"123123\",\r\n\t\t\"series\": \"1111\"\r\n\t}],\r\n\t\"address\": [{\r\n\t\t\"address_query\": \"г Дрезна, ул Северная, д 6а к 85\",\r\n\t\t\"address_type\": \"LEGAL_ADDRESS\"\r\n\t},\r\n\t{\r\n\t\t\"address_query\": \"г Дрезна, ул Северная, д 6а к 85\",\r\n\t\t\"address_type\": \"ACTUAL_ADDRESS\"\r\n\t}]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/insured_objects/insurants/natural_persons",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"insured_objects",
+						"insurants",
+						"natural_persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Страхователь с контактными данными",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"address\": [\r\n        {\r\n            \"address_query\": \"г Дрезна, ул Коммунистическая, д 1 к 40\",\r\n            \"address_type\": \"LEGAL_ADDRESS\"\r\n        },\r\n        {\r\n            \"address_query\": \"г Дрезна, ул Коммунистическая, д 1 к 40\",\r\n            \"address_type\": \"ACTUAL_ADDRESS\"\r\n        }\r\n    ],\r\n    \"credential\": [\r\n        {\r\n            \"credential_type\": \"RUSSIAN_INTERNAL_PASSPORT\",\r\n            \"issue_date\": \"2007-03-08\",\r\n            \"issue_point\": \"УФМС\",\r\n            \"issue_point_code\": \"111-222\",\r\n            \"number\": \"111111\",\r\n            \"series\": \"2222\"\r\n        }\r\n    ],\r\n    \"contact\": [\r\n        {\r\n            \"contact_type\": \"PHONE\",\r\n            \"data\": \"+71111111111\"\r\n        },\r\n        {\r\n            \"contact_type\": \"EMAIL\",\r\n            \"data\": \"234@123.ru\"\r\n        }\r\n    ],\r\n    \"last_name\": \"Хамуляк\",\r\n    \"first_name\": \"Николай\",\r\n    \"patronymic\": \"Михайлович\",\r\n    \"birth_date\": \"1977-02-23\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/v2/insured_objects/insurants/natural_persons",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"v2",
+						"insured_objects",
+						"insurants",
+						"natural_persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Автомобиль",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"car_model_id\": 54021506,\r\n    \"engine_power\": 106,\r\n    \"chassis_number\": null,\r\n    \"car_body_number\": null,\r\n    \"vin_number\": \"WAUZZZ8T4BA037241\",\r\n    \"number_plate\": \"Р904МХ178\",\r\n    \"manufacturing_year\": 2014,\r\n    \"max_mass\": null,\r\n    \"has_trailer\": false,\r\n    \"credential\": [\r\n        {\r\n            \"credential_type\": \"VEHICLE_REGISTRATION\",\r\n            \"issue_date\": \"2014-11-01\",\r\n            \"number\": \"267461\",\r\n            \"series\": \"78УН\"\r\n        },\r\n        {\r\n            \"credential_type\": \"DIAGNOSTIC_CHART\",\r\n            \"number\": \"021960081809862\",\r\n            \"series\": \"series\",\r\n            \"expiration_date\": \"2020-06-17\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/insured_objects/cars",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"insured_objects",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Марки автомобилей",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host }}/{{api_version }}/dicts/car_models?car_mark=126",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host }}"
+					],
+					"path": [
+						"{{api_version }}",
+						"dicts",
+						"car_models"
+					],
+					"query": [
+						{
+							"key": "car_mark",
+							"value": "126"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Объединение субъектов и объектов страхования в одну сущность",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "charset=UTF-8",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"drivers\": [\r\n    \"{{driver_id}}\"\r\n  ],\r\n  \"owner\": \"{{owner_id}}\",\r\n  \"car\": \"{{car_id}}\",\r\n  \"insurant\": \"{{insurant_id}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/insured_objects/",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"insured_objects",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Обновление договора в системе",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Accept",
+						"value": "text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"insured_object\": \"{{insured_object_id}}\"\r\n}"
+				},
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"{{agreement_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Получение договора и информации о нем",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"{{agreement_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Архив договоров",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Страховые компании",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/companies/",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"companies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Расчёт по страховой компании",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{http_schema}}://{{host}}/{{api_version}}/agreements/{{agreement_id}}/results/{{ins_company_code}}",
+					"protocol": "{{http_schema}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{api_version}}",
+						"agreements",
+						"{{agreement_id}}",
+						"results",
+						"{{ins_company_code}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
